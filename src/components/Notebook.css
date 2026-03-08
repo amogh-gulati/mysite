@@ -71,6 +71,11 @@
     line-height: var(--grid-row);
 }
 
+.last-update {
+    font-size: 0.92rem;
+    color: rgba(43, 43, 43, 0.78);
+}
+
 .notes-textarea {
     width: var(--content-width);
     height: 100%;

@@ -202,6 +202,7 @@ const Notebook = () => {
                 <div className="scene-info">
                     <h2>Amogh Gulati</h2>
                     <p>Hi, I am Amogh. I write code.</p>
+                    <p className="last-update">Last update: March 7, 2026</p>
                     <p className="physics-info">
                         New York, US | ag11542@nyu.edu | +1 (929) 363 7577<br />
                         <a href="https://github.com/amogh-gulati" target="_blank" rel="noreferrer">GitHub</a> | <a href="https://linkedin.com/in/amogh-gulati" target="_blank" rel="noreferrer">LinkedIn</a>
