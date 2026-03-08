@@ -311,12 +311,6 @@
     transition: width 0.08s linear;
 }
 
-.time-label {
-    margin-top: 8px;
-    text-align: center;
-    font-size: 1rem;
-}
-
 @media (max-width: 768px) {
     .notebook-container {
         min-height: 190vh;

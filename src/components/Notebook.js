@@ -337,7 +337,6 @@ const Notebook = () => {
                     <div className="scroll-progress-bar">
                         <div className="progress-fill" style={{ width: `${animationProgress * 100}%` }}></div>
                     </div>
-                    <div className="time-label">t = {elapsed.toFixed(2)} s</div>
                 </div>
             </div>
         </div>
