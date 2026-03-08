@@ -129,20 +129,29 @@ const Notebook = () => {
         const layerSizes = [4, 6, 5, 3];
         const layers = layerSizes.length;
 
-        const networkWidth = Math.min(Math.max(550, geometry.width * 0.7), 800);
-        const networkHeight = Math.min(Math.max(450, geometry.height * 0.65), 650);
+        const isNarrow = geometry.width <= 768;
+
+        const networkWidth = isNarrow
+            ? Math.min(Math.max(300, geometry.width * 0.58), 420)
+            : Math.min(Math.max(550, geometry.width * 0.7), 800);
+        const networkHeight = isNarrow
+            ? Math.min(Math.max(260, geometry.height * 0.42), 380)
+            : Math.min(Math.max(450, geometry.height * 0.65), 650);
 
         // Place the network near the lower merge region, slightly above-left of the endpoint.
-        const targetLeft = geometry.endX - networkWidth - Math.max(70, geometry.width * 0.08);
-        const targetTop = geometry.endY - networkHeight - Math.max(90, geometry.height * 0.12);
+        const targetLeft = geometry.endX - networkWidth - (isNarrow ? Math.max(44, geometry.width * 0.05) : Math.max(70, geometry.width * 0.08));
+        const targetTop = geometry.endY - networkHeight - (isNarrow ? Math.max(44, geometry.height * 0.06) : Math.max(90, geometry.height * 0.12));
+
+        // On phones, keep the diagram in the lower area to avoid text collisions.
+        const minTop = isNarrow ? Math.max(geometry.height * 0.58, geometry.startY + 120) : geometry.startY + 40;
 
         const left = Math.min(
             Math.max(targetLeft, 20),
             Math.max(20, geometry.width - networkWidth - 20)
         );
         const top = Math.min(
-            Math.max(targetTop, geometry.startY + 40),
-            Math.max(geometry.startY + 40, geometry.height - networkHeight - 80)
+            Math.max(targetTop, minTop),
+            Math.max(minTop, geometry.height - networkHeight - 80)
         );
 
         const nodesByLayer = layerSizes.map((size, layerIndex) => {
