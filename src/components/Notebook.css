@@ -1,0 +1,350 @@
+.notebook-container {
+    background-color: #f0e6d2;
+    min-height: 180vh;
+    padding: 0;
+    padding-bottom: 120px;
+    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.physics-info {
+    font-size: 0.95rem;
+}
+
+.physics-info a {
+    color: #2f4f8f;
+}
+
+.curve-ball-label {
+    color: #4169e1;
+    font-weight: bold;
+}
+
+.linear-ball-label {
+    color: #a67c00;
+    font-weight: bold;
+}
+
+.lines-container {
+    --content-width: min(760px, calc(100% - 40px));
+    --content-pad-x: clamp(18px, 4vw, 30px);
+    --grid-row: 40px;
+    position: relative;
+    min-height: calc(180vh - 120px);
+    overflow: hidden;
+    background-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            transparent calc(var(--grid-row) - 1px),
+            rgba(0, 0, 0, 0.15) var(--grid-row)
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            transparent calc(var(--grid-row) - 1px),
+            rgba(0, 0, 0, 0.05) var(--grid-row)
+        );
+    background-size: var(--grid-row) var(--grid-row);
+}
+
+.scene-info {
+    position: relative;
+    z-index: 6;
+    width: var(--content-width);
+    margin: var(--grid-row) auto 0;
+    padding: 8px var(--content-pad-x);
+    border: none;
+    background: transparent;
+    line-height: var(--grid-row);
+    box-sizing: border-box;
+}
+
+.scene-info h2 {
+    margin: 0;
+    font-size: clamp(1.2rem, 2.4vw, 2rem);
+    line-height: var(--grid-row);
+}
+
+.scene-info p {
+    margin: 0;
+    line-height: var(--grid-row);
+}
+
+.notes-textarea {
+    width: var(--content-width);
+    height: 100%;
+    min-height: calc(180vh - 120px);
+    margin: var(--grid-row) auto 0;
+    background: transparent;
+    border: none;
+    padding: 18px var(--content-pad-x) 28px;
+    line-height: var(--grid-row);
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 6;
+}
+
+.notes-textarea h3 {
+    margin: var(--grid-row) 0 0;
+    line-height: var(--grid-row);
+}
+
+.notes-textarea h3:first-of-type {
+    margin-top: 0;
+}
+
+.notes-textarea h4 {
+    margin: 12px 0 6px;
+    font-size: 1rem;
+}
+
+.notes-textarea p {
+    margin: 0;
+    line-height: var(--grid-row);
+}
+
+.notes-textarea ul {
+    margin: 0 0 0 18px;
+    padding: 0;
+}
+
+.notes-textarea li {
+    margin: 0;
+    line-height: var(--grid-row);
+}
+
+.animation-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.nn-diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.nn-edge {
+    stroke: rgba(35, 35, 35, 0.26);
+    stroke-width: 1.4;
+}
+
+.nn-node {
+    stroke-width: 1.3;
+}
+
+.nn-node-input {
+    fill: rgba(65, 105, 225, 0.28);
+    stroke: rgba(42, 76, 170, 0.7);
+}
+
+.nn-node-hidden {
+    fill: rgba(80, 80, 80, 0.18);
+    stroke: rgba(35, 35, 35, 0.62);
+}
+
+.nn-node-output {
+    fill: rgba(46, 143, 47, 0.28);
+    stroke: rgba(35, 110, 36, 0.72);
+}
+
+.rolling-ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(0, 0);
+}
+
+.curve-ball {
+    background-color: #4169e1;
+}
+
+.linear-ball {
+    background-color: #e0b300;
+}
+
+.ball-connector {
+    position: absolute;
+    height: 0;
+    border-top: 2px dotted rgba(0, 0, 0, 0.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+}
+
+.ball-overlap-merge {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(76, 128, 86, 0.7);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.y-axis {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.axis-line {
+    position: absolute;
+    background-color: #333;
+}
+
+.y-line {
+    top: 0;
+    width: 2px;
+    height: 100%;
+}
+
+.y-labels {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.axis-label {
+    position: absolute;
+    color: #333;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+}
+
+.y-label {
+    transform: translateY(-50%);
+}
+
+.start-point {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    transform: translate(-10px, -34px);
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(240, 230, 210, 0.9);
+    font-size: 0.8rem;
+    color: #4b3b2a;
+    font-weight: bold;
+    z-index: 12;
+}
+
+.start-time {
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.bottom-hud {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(240, 230, 210, 0.7), rgba(240, 230, 210, 0.96));
+    backdrop-filter: blur(2px);
+    padding-top: 8px;
+    z-index: 20;
+}
+
+.floating-axis {
+    position: relative;
+    height: 56px;
+}
+
+.x-line {
+    top: 8px;
+    height: 2px;
+}
+
+.x-labels {
+    position: relative;
+    height: 100%;
+}
+
+.x-label {
+    top: 16px;
+    transform: translateX(-50%);
+}
+
+.x-axis-caption {
+    position: absolute;
+    top: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.scroll-indicator {
+    margin-top: 6px;
+    padding-bottom: 10px;
+}
+
+.scroll-progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #4169e1, #2f8f2f);
+    transition: width 0.08s linear;
+}
+
+.time-label {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .notebook-container {
+        min-height: 190vh;
+        padding-bottom: 120px;
+    }
+
+    .lines-container {
+        min-height: calc(190vh - 120px);
+    }
+
+    .lines-container {
+        --content-width: calc(100% - 20px);
+        --content-pad-x: 16px;
+        --grid-row: 34px;
+    }
+
+    .notes-textarea {
+        line-height: var(--grid-row);
+        font-size: 14px;
+        min-height: calc(190vh - 120px);
+        padding-top: 16px;
+    }
+
+    .scene-info {
+        margin-top: var(--grid-row);
+        padding: 8px var(--content-pad-x);
+    }
+
+    .axis-label {
+        font-size: 10px;
+    }
+
+    .floating-axis {
+        height: 52px;
+    }
+}

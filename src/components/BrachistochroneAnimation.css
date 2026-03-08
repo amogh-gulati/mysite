@@ -1,0 +1,67 @@
+.animation-container {
+    padding: 20px;
+    background-color: #f0e6d2;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .graph-paper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: white;
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border: 1px solid #d3c7b1;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  .brachistochrone-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #8b5a2b; /* Earthy tone to match notebook */
+    stroke-width: 2px;
+  }
+  
+  .ball {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #c72a1c; /* Deeper red to match vintage feel */
+    border-radius: 50%;
+    top: 20px;
+    left: 50px;
+    animation: rollDown 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  
+  @keyframes rollDown {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(400px, 250px);
+    }
+  }
+  
+  /* Drawing animation for the path */
+  .brachistochrone-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawPath 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  
+  @keyframes drawPath {
+    0% {
+      stroke-dashoffset: 1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
