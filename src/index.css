@@ -2,8 +2,8 @@
   /* Muji-style math paper: unbleached off-white, blue-grey 5mm grid, 1cm major lines. */
   --paper: #f5f3ec;
   --paper-glass: rgba(245, 243, 236, 0.88);
-  --grid-minor: rgba(70, 130, 175, 0.16);
-  --grid-major: rgba(70, 130, 175, 0.27);
+  --grid-minor: rgba(70, 130, 175, 0.12);
+  --grid-major: rgba(70, 130, 175, 0.21);
   --ink: #2b2b2a;
   --muted: #6e6d68;
   --rule: rgba(43, 43, 42, 0.14);
@@ -25,8 +25,8 @@
   :root {
     --paper: #16191d;
     --paper-glass: rgba(22, 25, 29, 0.88);
-    --grid-minor: rgba(150, 180, 205, 0.07);
-    --grid-major: rgba(150, 180, 205, 0.15);
+    --grid-minor: rgba(150, 180, 205, 0.055);
+    --grid-major: rgba(150, 180, 205, 0.12);
     --ink: #e8e3d8;
     --muted: #9c978c;
     --rule: rgba(232, 227, 216, 0.14);

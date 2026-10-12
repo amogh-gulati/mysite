@@ -199,7 +199,27 @@ section > p {
 }
 
 .hero {
+  position: relative;
   padding-top: 24px;
+}
+
+/* Line drawing, used as a mask so it is drawn in the ink color and follows dark mode. */
+.hero-art {
+  float: right;
+  width: clamp(120px, 26vw, 190px);
+  aspect-ratio: 603 / 659;
+  margin: 0 0 8px 20px;
+  background-color: var(--ink);
+  -webkit-mask: url('./assets/amoeba.png') center / contain no-repeat;
+  mask: url('./assets/amoeba.png') center / contain no-repeat;
+}
+
+@media (max-width: 560px) {
+  .hero-art {
+    float: none;
+    width: 128px;
+    margin: 0 0 4px;
+  }
 }
 
 .hero h1 {

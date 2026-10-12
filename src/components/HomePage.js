@@ -13,6 +13,7 @@ const HomePage = () => (
         {(race) => (
             <div className="page home-content">
                 <section className="hero">
+                    <div className="hero-art" role="img" aria-label="Line drawing of an amoeba surrounded by small doodles: a galaxy, moon, star, eye, leaf, heart, mountains and waves" />
                     <h1>{PROFILE.name}</h1>
                     <p className="lede">
                         ML engineer and researcher. I&rsquo;m doing an M.S. in Computer Science at{' '}
