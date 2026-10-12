@@ -11,11 +11,16 @@
     "react-dom": "^19.1.0",
     "react-router-dom": "^6.30.3",
     "react-scripts": "5.0.1",
+    "sharp": "^0.33.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "personal": "node scripts/personal.mjs",
+    "prestart": "node scripts/personal.mjs --if-missing",
     "start": "react-scripts start",
+    "prebuild": "node scripts/personal.mjs",
     "build": "react-scripts build",
+    "pretest": "node scripts/personal.mjs --if-missing",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

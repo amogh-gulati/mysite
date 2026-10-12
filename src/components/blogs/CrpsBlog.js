@@ -1,95 +1,69 @@
 import React from 'react';
 
-const CrpsBlog = () => {
-    return (
-        <article className="blog-card blog-article">
-            <p className="blog-status">New</p>
-            <h2>CRPS - Continuous Ranked Probability Score</h2>
-            <p>
-                CRPS generalizes MAE to probabilistic forecasts.
-                It evaluates both closeness to observations and uncertainty quality.
-            </p>
+const Formula = ({ children }) => <pre className="formula">{children}</pre>;
 
-            <h3>Definition</h3>
-            <p>
-                Let X be a random variable and F its CDF, F(y) = P[X &lt;= y].
-                Let x be the observed value.
-            </p>
-            <pre className="formula-block">
-CRPS(F, x) = integral from -inf to +inf of (F(y) - 1(y - x))^2 dy
-            </pre>
-            <p>
-                where 1(y - x) is the unit step (Heaviside) function.
-                For deterministic forecasts, CRPS reduces to MAE.
-            </p>
+const CrpsBlog = () => (
+    <article className="post">
+        <h1>CRPS: the Continuous Ranked Probability Score</h1>
+        <p className="lede">
+            CRPS generalizes mean absolute error to probabilistic forecasts. It scores both how close a
+            forecast is to what happened and how well it captures uncertainty.
+        </p>
 
-            <h3>Equivalent Form</h3>
-            <pre className="formula-block">
-CRPS(F, x) = E[|X - x|] - 0.5 E[|X - X'|]
-            </pre>
-            <p>
-                X and X' are independent draws from F.
-                E[.] denotes expectation.
-            </p>
+        <h2>Definition</h2>
+        <p>
+            Let X be a random variable with CDF F, so F(y) = P[X ≤ y], and let x be the observed value.
+        </p>
+        <Formula>CRPS(F, x) = ∫ ( F(y) − 𝟙{'{'}y ≥ x{'}'} )² dy     over y ∈ (−∞, ∞)</Formula>
+        <p>
+            𝟙{'{'}y ≥ x{'}'} is the Heaviside step at the observation. For a deterministic forecast (F is a
+            step function itself) CRPS reduces to MAE.
+        </p>
 
-            <h3>Model Interpretation</h3>
-            <ul>
-                <li>X: one sample from the forecast distribution.</li>
-                <li>X': another independent sample from the forecast distribution.</li>
-                <li>x: the observed value from data.</li>
-            </ul>
+        <h2>Equivalent form</h2>
+        <Formula>CRPS(F, x) = E|X − x| − ½ E|X − X′|</Formula>
+        <ul>
+            <li>X, X′: two independent samples from the forecast distribution F.</li>
+            <li>x: the observed value.</li>
+        </ul>
 
-            <h3>Intuition: Calibration vs Sharpness</h3>
-            <pre className="formula-block">
-CRPS(F, x) = E|X - x| - 0.5 E|X - X'|
-            </pre>
-            <ul>
-                <li>First term: calibration (forecast close to observation).</li>
-                <li>Second term: sharpness/spread penalty balance.</li>
-            </ul>
+        <h2>Intuition: calibration vs. sharpness</h2>
+        <ul>
+            <li><strong>E|X − x|</strong> rewards forecasts that land close to the observation.</li>
+            <li><strong>−½ E|X − X′|</strong> credits spread, so the forecast isn&rsquo;t pushed to collapse onto a single point.</li>
+        </ul>
 
-            <h3>Monte Carlo Estimation</h3>
-            <p>When F is represented by samples x_i, CRPS is estimated as:</p>
-            <pre className="formula-block">
-CRPS(F, y) ~= (1/N) sum_i |x_i - y| - (1/(2N^2)) sum_i,j |x_i - x_j|
-            </pre>
-            <ul>
-                <li>First term: skill (closeness to observation).</li>
-                <li>Second term: spread (ensemble diversity).</li>
-            </ul>
+        <h2>Monte Carlo estimate</h2>
+        <p>With an ensemble of N samples x₁ … x_N and observation y:</p>
+        <Formula>CRPS ≈ (1/N) Σᵢ |xᵢ − y|  −  (1/2N²) Σᵢ Σⱼ |xᵢ − xⱼ|</Formula>
+        <ul>
+            <li>First term: skill, how close members are to the observation.</li>
+            <li>Second term: spread, the diversity of the ensemble.</li>
+        </ul>
 
-            <h3>MSE vs CRPS</h3>
-            <p>
-                MSE assumes a single deterministic prediction:
-                MSE = E[(y_hat - y)^2].
-                In irreducibly uncertain settings (for example, weather),
-                MSE collapses forecasts toward the conditional mean.
-            </p>
-            <p>
-                CRPS rewards getting both mean and uncertainty right.
-                For a Gaussian forecast with mean mu and std sigma:
-            </p>
-            <pre className="formula-block">
-CRPS(F, x) = sigma * [ z(2Phi(z)-1) + 2phi(z) - 1/sqrt(pi) ]
-z = (x - mu) / sigma
-            </pre>
-            <p>
-                If sigma is pushed too low, scores worsen when x != mu.
-                Matching real uncertainty lowers average CRPS.
-            </p>
+        <h2>MSE vs. CRPS</h2>
+        <p>
+            MSE = E[(ŷ − y)²] assumes a single deterministic prediction. In settings with irreducible
+            uncertainty, like weather, minimizing MSE collapses forecasts toward the conditional mean and
+            produces blurry fields.
+        </p>
+        <p>CRPS rewards getting both the mean and the uncertainty right. For a Gaussian forecast N(μ, σ²):</p>
+        <Formula>{`CRPS = σ · [ z (2Φ(z) − 1) + 2φ(z) − 1/√π ],   z = (x − μ) / σ`}</Formula>
+        <p>
+            Push σ too low and the score worsens whenever x ≠ μ. Matching the true uncertainty minimizes
+            average CRPS.
+        </p>
 
-            <h3>One World, Many Similar Situations</h3>
-            <p>
-                We do not need repeated draws at the exact same timestamp.
-                Across geography and time there are many similar atmospheric setups,
-                and their varying outcomes reveal the conditional distribution.
-            </p>
-            <p>
-                Analogy: MSE predicts the average sky color at noon.
-                CRPS models the distribution of sky colors.
-            </p>
-        </article>
-    );
-};
+        <h2>One world, many similar situations</h2>
+        <p>
+            We never observe repeated draws at the same timestamp. But across geography and time there are
+            many similar atmospheric setups, and their varied outcomes reveal the conditional distribution.
+        </p>
+        <p>
+            An analogy: MSE predicts the average sky color at noon. CRPS models the distribution of sky
+            colors.
+        </p>
+    </article>
+);
 
 export default CrpsBlog;

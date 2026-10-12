@@ -1,6 +1,6 @@
 {
-  "short_name": "amogh",
-  "name": "amogh",
+  "short_name": "Amogh",
+  "name": "Amogh Gulati",
   "icons": [
     {
       "src": "rabbit.jpg",
@@ -15,6 +15,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#f5f3ec",
+  "background_color": "#f5f3ec"
 }

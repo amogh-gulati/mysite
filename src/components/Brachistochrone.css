@@ -1,0 +1,172 @@
+.brach {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.brach svg {
+    display: block;
+}
+
+.brach .track {
+    fill: none;
+    stroke-width: 1.5;
+    stroke-dasharray: 4 6;
+}
+
+.brach .track.lane-a {
+    stroke: var(--curve);
+    stroke-opacity: 0.5;
+}
+
+.brach .track.lane-b {
+    stroke: var(--line);
+    stroke-opacity: 0.6;
+}
+
+.brach .connector {
+    stroke: var(--ink);
+    stroke-opacity: 0.35;
+    stroke-width: 1.2;
+    stroke-dasharray: 2 4;
+}
+
+.brach .ball.lane-a {
+    fill: var(--curve);
+}
+
+.brach .ball.lane-b {
+    fill: var(--line);
+}
+
+.brach .mark {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--muted);
+}
+
+.brach-legend {
+    position: fixed;
+    left: 16px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index: 30;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    max-width: calc(100% - 32px);
+    padding: 7px 12px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-glass);
+    backdrop-filter: blur(6px);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.brach-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    display: inline-block;
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.dot.lane-a {
+    background: var(--curve);
+}
+
+.dot.lane-b {
+    background: var(--line);
+}
+
+.brach-num {
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+.brach-hint {
+    color: var(--accent);
+}
+
+.brach-arrow {
+    display: inline-block;
+    font-style: normal;
+    animation: brach-nudge 1.4s ease-in-out infinite;
+}
+
+@keyframes brach-nudge {
+    0%, 100% { transform: translateY(-1px); }
+    50% { transform: translateY(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brach-arrow {
+        animation: none;
+    }
+}
+
+.race-results ol {
+    margin: 16px 0 12px;
+    padding: 0;
+    list-style: none;
+}
+
+.race-results li {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.race-results li .dot {
+    margin-right: 8px;
+}
+
+.race-results .place {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.race-results li .brach-num {
+    font-size: 14px;
+}
+
+.race-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 16px;
+}
+
+.race-again {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .brach {
+        opacity: 0.55;
+    }
+
+    .brach-legend {
+        font-size: 11px;
+    }
+}

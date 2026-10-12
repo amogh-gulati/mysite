@@ -1,70 +1,47 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CrpsBlog from './blogs/CrpsBlog';
+import NotFound from './NotFound';
 
-const BLOGS = [
+export const BLOGS = [
     {
         slug: 'crps',
-        title: 'CRPS - Continuous Ranked Probability Score',
-        summary: 'How probabilistic forecasting quality is measured via calibration and sharpness.',
+        title: 'CRPS: the Continuous Ranked Probability Score',
+        summary: 'How probabilistic forecasts are scored on both calibration and sharpness.',
         Component: CrpsBlog,
     },
 ];
 
-const BlogsTab = () => {
+const BlogsTab = () => (
+    <main className="page">
+        <header className="page-header">
+            <h1>Writing</h1>
+            <p className="lede">Notes I write to understand things properly.</p>
+        </header>
 
-    return (
-        <main className="tab-page blogs-page">
-            <section className="page-hero">
-                <h1>Blogs</h1>
-                <p>writing practice</p>
-            </section>
-
-            <section className="blog-grid">
-                {BLOGS.map((blog) => (
-                    <Link
-                        key={blog.slug}
-                        className="blog-card blog-card-button"
-                        to={`/blogs/${blog.slug}`}
-                    >
-                        <p className="blog-status">Published</p>
-                        <h2>{blog.title}</h2>
-                        <p>{blog.summary}</p>
+        <ul className="post-list">
+            {BLOGS.map((blog) => (
+                <li key={blog.slug}>
+                    <Link to={`/blog/${blog.slug}`} className="post-link">
+                        <span className="post-title">{blog.title}</span>
+                        <span className="meta">{blog.summary}</span>
                     </Link>
-                ))}
-            </section>
-        </main>
-    );
-};
+                </li>
+            ))}
+        </ul>
+    </main>
+);
 
 export const BlogPostPage = () => {
     const { slug } = useParams();
+    const blog = BLOGS.find((b) => b.slug === slug);
+    if (!blog) return <NotFound />;
 
-    const activeBlog = useMemo(
-        () => BLOGS.find((blog) => blog.slug === slug) || null,
-        [slug]
-    );
-
-    if (!activeBlog) {
-        return (
-            <main className="tab-page blogs-page">
-                <section className="page-hero">
-                    <h1>Blog not found</h1>
-                    <p>The blog you are looking for does not exist.</p>
-                    <Link to="/blogs" className="back-link-btn">Back to blogs</Link>
-                </section>
-            </main>
-        );
-    }
-
-    const ActiveComponent = activeBlog.Component;
-
+    const Post = blog.Component;
     return (
-        <main className="tab-page blogs-page">
-            <section className="blog-view-header">
-                <Link to="/blogs" className="back-link-btn">Back to blogs</Link>
-            </section>
-            <ActiveComponent />
+        <main className="page">
+            <Link to="/blog" className="more back">← All writing</Link>
+            <Post />
         </main>
     );
 };

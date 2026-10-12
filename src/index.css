@@ -1,13 +1,71 @@
+:root {
+  /* Muji-style math paper: unbleached off-white, blue-grey 5mm grid, 1cm major lines. */
+  --paper: #f5f3ec;
+  --paper-glass: rgba(245, 243, 236, 0.88);
+  --grid-minor: rgba(70, 130, 175, 0.16);
+  --grid-major: rgba(70, 130, 175, 0.27);
+  --ink: #2b2b2a;
+  --muted: #6e6d68;
+  --rule: rgba(43, 43, 42, 0.14);
+  --accent: #2c4f94;
+  --curve: #3d63d6;
+  --line: #c99a06;
+  --green: #2f8a3a;
+  --chip: rgba(255, 255, 255, 0.6);
+  --font-display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --radius: 2px;
+  --grid: 20px;
+  --grid-major-size: calc(var(--grid) * 5);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16191d;
+    --paper-glass: rgba(22, 25, 29, 0.88);
+    --grid-minor: rgba(150, 180, 205, 0.07);
+    --grid-major: rgba(150, 180, 205, 0.15);
+    --ink: #e8e3d8;
+    --muted: #9c978c;
+    --rule: rgba(232, 227, 216, 0.14);
+    --accent: #93b2f2;
+    --curve: #7d9ef5;
+    --line: #e3b93c;
+    --green: #6cc77a;
+    --chip: rgba(255, 255, 255, 0.05);
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-minor) 1px, transparent 1px);
+  background-size:
+    var(--grid-major-size) var(--grid-major-size),
+    var(--grid-major-size) var(--grid-major-size),
+    var(--grid) var(--grid),
+    var(--grid) var(--grid);
+  background-position: -1px -1px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+code,
+pre {
+  font-family: var(--font-mono);
 }

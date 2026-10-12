@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[left=1.1cm,top=1.0cm,right=1.1cm,bottom=1.0cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{microtype}
+\definecolor{linkblue}{HTML}{1F4E9A}
+\usepackage[colorlinks=true,urlcolor=linkblue,linkcolor=linkblue]{hyperref}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{nosep,leftmargin=1.2em,topsep=0pt,partopsep=0pt}
+
+% Compact section headings
+\titleformat{\section}
+  {\large\scshape\bfseries}{}{0pt}{}
+  [\vspace{-6pt}\rule{\textwidth}{0.4pt}]
+\titlespacing{\section}{0pt}{5pt}{2pt}
+
+% Organization | Role ... Location | Dates
+\newcommand{\job}[4]{%
+  \textbf{#1} \textbar\ \textit{#2}
+  \hfill #3 \textbar\ #4\par\vspace{1pt}
+}
+
+\begin{document}
+
+{\centering
+  {\LARGE \textbf{Amogh Gulati}}\\[3pt]
+  {\small
+  New York, NY \textbullet\
+  \href{mailto:ag11542@nyu.edu}{ag11542@nyu.edu} \textbullet\
+  +1 (929) 363 7577 \textbullet\
+  \href{https://github.com/amogh-gulati}{github.com/amogh-gulati} \textbullet\
+  \href{https://linkedin.com/in/amogh-gulati}{linkedin.com/in/amogh-gulati}
+  }\par
+}
+
+\section{Education}
+\textbf{NYU Courant Institute of Mathematical Sciences}
+\hfill New York, NY \textbar\ Sep 2025 -- May 2027\\
+M.S. Computer Science \hfill GPA: 3.8/4.0\\[2pt]
+\textbf{IIIT Delhi}
+\hfill New Delhi, India \textbar\ Aug 2017 -- May 2021\\
+B.Tech. Computer Science and Engineering \hfill GPA: 8.71/10
+
+\section{Skills}
+\textbf{Languages:} Python, C++, SQL, Bash\\
+\textbf{ML \& Data:} PyTorch (DDP), ONNX, Weights \& Biases, Xarray, Zarr, Pandas, NumPy\\
+\textbf{Infrastructure:} Slurm, Docker, AWS (Lambda, SageMaker, S3, SQS, CloudFront), Elasticsearch, Kibana
+
+\section{Experience}
+\job{M\textsuperscript{2}LInES, NYU Courant}
+    {Graduate Research Assistant}
+    {New York, NY}
+    {Oct 2025 -- Present}
+\begin{itemize}
+  \item Improved \href{https://github.com/m2lines/Samudra}{Samudra}, an ML ocean emulator: skip-connection dropout reduced rollout RMSE by up to \textbf{15\%} on velocity and \textbf{8.5\%} on sea surface height; ConvNeXt--axial attention blocks reduced RMSE across all variables and depths.
+  \item Developing replay-buffer training and spectral losses to address spatial smoothing and long-term trend errors in 100-year ocean rollouts.
+\end{itemize}
+
+\vspace{3pt}
+\job{Gan.ai (Sequoia-backed)}
+    {Founding ML Engineer}
+    {Noida, India}
+    {Jan 2021 -- Oct 2024}
+\begin{itemize}
+  \item Built and owned the company's ML stack from scratch, spanning TTS model training, production inference, and deployment; led the ML infrastructure team.
+  \item Trained and deployed TTS models (NaturalSpeech2, FastSpeech2, Tortoise) for English and 6 Indic languages, serving \textbf{200k+ daily inferences}.
+  \item Designed AWS deployment pipelines using Lambda, SageMaker, Docker, and ONNX, reducing cold-start latency from \textbf{60s to 4s}.
+  \item Owned delivery of personalized video ads for \href{https://www.youtube.com/watch?v=bsAu_GSFEXM}{Samsung} and AI-generated birthday songs for \href{https://www.youtube.com/watch?v=uvzX71ff2pg}{Cadbury}.
+  \item Established security and operational processes and compiled audit evidence for the company's \textbf{SOC 2 Type II} compliance.
+  \item Co-inventor on \textbf{2 pending US patent applications} for AI voice-over and multimedia generation.
+\end{itemize}
+
+\vspace{3pt}
+\job{Precog Research Group, IIIT Delhi}
+    {Undergraduate Researcher}
+    {New Delhi, India}
+    {Jun 2019 -- Jan 2021}
+\begin{itemize}
+  \item Built ELK pipelines to automate collection of \textbf{100M+ tweets} for social media research.
+  \item Analyzed emotions and misinformation in COVID-19 and political discussions on social media, resulting in publication (below).
+\end{itemize}
+
+\vspace{3pt}
+\job{Qualcomm}
+    {Software Engineering Intern}
+    {Remote}
+    {May 2020 -- Aug 2020}
+\begin{itemize}
+  \item Extended debugging features in the Hexagon IDE and automated build-goal validation with Python.
+\end{itemize}
+
+\section{Publications \& Patents \hfill {\normalfont\normalsize
+\href{https://scholar.google.com/citations?user=3R23LMAAAAAJ}{Google Scholar}}}
+
+{\small
+\begin{itemize}
+  \item Varadhan, P. S., \textbf{Gulati, A.}, Sankar, A., Anand, S., et al. (2025). \href{https://arxiv.org/abs/2411.12719}{Rethinking MUSHRA: Addressing Modern Challenges in Text-to-Speech Evaluation}. \textit{TMLR}.
+  \item Aggrawal, P., Jolly, B. L. K., \textbf{Gulati, A.}, et al. (2021). \href{https://www.frontiersin.org/journals/communication/articles/10.3389/fcomm.2021.695913/full}{Psychometric Analysis and Coupling of Emotions Between State Bulletins and Twitter in India During COVID-19 Infodemic}. \textit{Frontiers in Communication}.
+  \item Prabhu, A., Guhathakurta, D., Subramanian, M., Reddy, M., Sehgal, S., Karandikar, T., \textbf{Gulati, A.}, et al. (2021). \href{https://arxiv.org/abs/2101.06914}{Capitol (Pat)riots: A Comparative Study of Twitter and Parler}. \textit{arXiv:2101.06914}.
+  \item \textbf{Gulati, A.}, Joshi, B., Jain, C., and Shukla, J. (2020). It's Not What They Play, It's What You Hear: Understanding Perceived vs. Induced Emotions in Hindustani Classical Music. \textit{ICMI '20 Companion}.
+  \item \textbf{Gulati, A.}, Siddhartha, S., Barman, M. P., Bhatia, A., and Bhooshan, S. (2025). \href{https://patents.google.com/patent/US20250210065A1/en}{Voiced-over Multimedia Track Generation}. \textit{US Patent App. 18/842,687} (pending).
+  \item Siddhartha, S., Bhatia, A., \textbf{Gulati, A.}, Barman, M. P., and Bhooshan, S. (2025). \href{https://patents.google.com/patent/US20250317628A1/en}{Seamless Multimedia Integration}. \textit{US Patent App. 19/242,615} (pending).
+\end{itemize}
+}
+
+\end{document}
